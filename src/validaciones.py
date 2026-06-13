@@ -4,10 +4,8 @@
 
 def agregar_pais(paises):
     # Solicita datos al usuario y agrega un nuevo país a la lista.
-    # Valida que ningún campo esté vacío, que el nombre no sea puramente numérico,
-    # que el continente pertenezca a una lista cerrada y que los valores numéricos
-    # sean positivos. Además, quita los puntos de miles antes de procesar.
-    # Parámetros: paises (list)
+    # Valida campos vacíos, nombres numéricos, valores positivos y
+    # permite ingresar continentes sin importar mayúsculas o tildes.
     
     print("\n=== AGREGAR PAÍS ===")
     nombre_raw = input("Nombre: ").strip()
@@ -22,15 +20,41 @@ def agregar_pais(paises):
         return
 
     nombre = nombre_raw.title()
-    continente = continente_raw.title()
 
+    # Lista oficial con el formato estético para la base de datos
+    
     continentes_validos = ["América Del Sur", "América Del Norte", "Europa", "Asia", "África", "Oceanía"]
-    if continente not in continentes_validos:
+
+    # Función interna para quitar tildes y pasar a minúsculas
+    
+    def normalizar(texto):
+        reemplazos = {"á": "a", "é": "e", "í": "i", "ó": "o", "ú": "u"}
+        t = texto.lower()
+        for tilde, reemp in reemplazos.items():
+            t = t.replace(tilde, reemp)
+        return t
+
+    # Normalizamos la entrada del usuario (ej: "america del sur")
+    
+    continente_usuario_limpio = normalizar(continente_raw)
+
+    # Creamos una lista de los válidos pero también normalizados
+    
+    continentes_validos_limpios = [normalizar(c) for c in continentes_validos]
+
+    # Comparamos limpiamente sin que afecten las tildes ni las mayúsculas
+    
+    if continente_usuario_limpio not in continentes_validos_limpios:
         print(f"Error: Continente inválido. Permitidos: {', '.join(continentes_validos)}")
         return
+    
+    # Si es válido, obtenemos el formato lindo ("América Del Sur") para guardarlo bien en el CSV
+    
+    indice = continentes_validos_limpios.index(continente_usuario_limpio)
+    continente_correcto = continentes_validos[indice]
 
     for pais in paises:
-        
+    
         if pais["nombre"].lower() == nombre.lower():
             print("Error: ese país ya existe en el sistema.")
             return
@@ -50,9 +74,10 @@ def agregar_pais(paises):
         print("Error: Debe ingresar un número entero válido para población y superficie.")
         return
 
-    paises.append({"nombre": nombre, "continente": continente, "poblacion": poblacion, "superficie": superficie})
+    # Guardamos el país con el continente perfectamente estandarizado
+    
+    paises.append({"nombre": nombre, "continente": continente_correcto, "poblacion": poblacion, "superficie": superficie})
     print(f"País '{nombre}' agregado exitosamente.")
-
 
 # ==========================================
 # ACTUALIZAR PAIS
@@ -75,8 +100,10 @@ def actualizar_pais(paises):
     for pais in paises:
         
         if pais["nombre"].lower() == nombre.lower():
-            
+        
             try:
+                # NUEVA MEJORA: Se leen las entradas limpiando los puntos antes de convertir
+                
                 poblacion_input = input("Nueva población: ").strip().replace(".", "")
                 superficie_input = input("Nueva superficie (km²): ").strip().replace(".", "")
 

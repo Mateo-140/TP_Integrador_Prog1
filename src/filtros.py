@@ -31,14 +31,17 @@ def filtrar_continente(paises):
 
 def filtrar_poblacion(paises):
     # Filtra y muestra los países que se encuentren dentro de un rango de población.
-    # Solicita los límites mínimo y máximo, y valida que sean números coherentes.
+    # Solicita los límites mínimo y máximo, limpia los puntos de miles y valida coherencia.
     # Parámetros: paises (list)
     
     print("\n=== FILTRAR POR RANGO DE POBLACIÓN ===")
-    
     try:
-        min_pob = int(input("Población mínima: "))
-        max_pob = int(input("Población máxima: "))
+        # NUEVA MEJORA: Sanitizamos las entradas quitando los puntos antes del casteo a int
+        min_pob_input = input("Población mínima: ").strip().replace(".", "")
+        max_pob_input = input("Población máxima: ").strip().replace(".", "")
+        
+        min_pob = int(min_pob_input)
+        max_pob = int(max_pob_input)
         
         if min_pob < 0 or max_pob < 0 or min_pob > max_pob:
             print("Error: rangos numéricos inconsistentes.")
@@ -58,14 +61,17 @@ def filtrar_poblacion(paises):
 
 def filtrar_superficie(paises):
     # Filtra y muestra los países que se encuentren dentro de un rango de superficie (km²).
-    # Solicita los límites mínimo y máximo y realiza el control de errores numéricos.
+    # Solicita los límites mínimo y máximo, limpia los puntos de miles y valida coherencia.
     # Parámetros: paises (list)
     
     print("\n=== FILTRAR POR RANGO DE SUPERFICIE ===")
-    
     try:
-        min_sup = int(input("Superficie mínima (km²): "))
-        max_sup = int(input("Superficie máxima (km²): "))
+        # MEJORA: Sanitizamos también la superficie quitando los puntos de miles
+        min_sup_input = input("Superficie mínima (km²): ").strip().replace(".", "")
+        max_sup_input = input("Superficie máxima (km²): ").strip().replace(".", "")
+        
+        min_sup = int(min_sup_input)
+        max_sup = int(max_sup_input)
         
         if min_sup < 0 or max_sup < 0 or min_sup > max_sup:
             print("Error: rangos numéricos inconsistentes.")
