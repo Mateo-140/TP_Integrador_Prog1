@@ -1,23 +1,21 @@
-
 # ==========================================
 # ESTADISTICAS
 # ==========================================
 
 def mostrar_estadisticas(paises):
-    """
-    Calcula y muestra estadísticas generales del dataset de países.
+    ### Calcula y muestra estadísticas generales del dataset de países.
+    ###
+    ### Indicadores mostrados:
+    ###     - País con mayor y menor población.
+    ###     - Promedio de población y superficie.
+    ###     - Cantidad de países por continente.
+    ###
+    ### Parámetros:
+    ###     paises (list): Lista de diccionarios con los datos de cada país.
+    ###
+    ### Retorna:
+    ###     None. Muestra los resultados por consola.
 
-    Indicadores mostrados:
-        - País con mayor y menor población.
-        - Promedio de población y superficie.
-        - Cantidad de países por continente.
-
-    Parámetros:
-        paises (list): Lista de diccionarios con los datos de cada país.
-
-    Retorna:
-        None. Muestra los resultados por consola.
-    """
     if not paises:
         print("No hay datos cargados para calcular estadísticas.")
         return
@@ -38,8 +36,10 @@ def mostrar_estadisticas(paises):
 
     for pais in paises:
         continente = pais["continente"]
+        
         if continente in continentes:
             continentes[continente] += 1
+        
         else:
             continentes[continente] = 1
 
