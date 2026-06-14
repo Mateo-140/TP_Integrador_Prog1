@@ -5,7 +5,8 @@ Este proyecto es el **Trabajo Práctico Integrador (TPI)** para la materia **Pro
 ---
 
 ## 👥 Integrantes
-
+Braian Martínez: desarrollo principal y edición de código, revisión.
+Mateo Peralta: documentación tecnica, correcciones y optimización del sistema.
 
 ---
 
