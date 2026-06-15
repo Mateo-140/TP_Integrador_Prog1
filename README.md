@@ -47,6 +47,7 @@ python -m src.main
 ```
 ---
 ## 💡Ejemplos Prácticos de Uso
+
 1. Agregar un País (Tolerante a minúsculas/tildes)
 Entrada en Consola:
 
@@ -58,4 +59,6 @@ Resultado: El sistema valida los datos de forma limpia, remueve los puntos inter
 
 ---
 ## 📎Link.
+
+Video explicativo y demostrativo del código.
 You tube: https://youtu.be/qe8kJ0Rlx-E
