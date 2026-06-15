@@ -46,11 +46,10 @@ Para garantizar que Python reconozca el paquete modular de manera interna sin co
 python -m src.main
 ```
 ---
-💡Ejemplos Prácticos de Uso
+##💡Ejemplos Prácticos de Uso
 1. Agregar un País (Tolerante a minúsculas/tildes)
 Entrada en Consola:
 
-Plaintext
 Nombre: Peru
 Continente: america del sur
 Población: 34.000.000
@@ -58,5 +57,5 @@ Superficie (km²): 1.285.216
 Resultado: El sistema valida los datos de forma limpia, remueve los puntos internamente y registra de forma estética en el CSV: Peru,América Del Sur,34000000,1285216.
 
 ---
-📎Link.
+##📎Link.
 You tube: https://youtu.be/qe8kJ0Rlx-E
